@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: Passbook
+  data:
+    hbase:
+      quorum: 43.107.136.120:2181
+      rootDir: file:///usr/local/hbase/hbase_data/root_dir
+      nodeParent: /hbase
+  redis:
+    host: 43.107.136.120.112
+    port: 6379
+  kafka:
+    bootstrap-servers: 43.107.136.120:9092
+    consumer:
+      group-id: passbook
+    listener:
+      concurrency: 4
+
+logging:
+  level:
+    root: info
+  file:
+    name: llxs-passbook.log
+

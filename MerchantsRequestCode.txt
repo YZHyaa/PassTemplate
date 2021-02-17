@@ -1,0 +1,66 @@
+1.创建商户（主要用用于测试）
+    POST: 127.0.0.1:8081/merchants/create
+    header: token/llxs-passbook-merchants
+    {
+        "name": "水果摊1号",
+        "logoUrl": "www.baidupic.com",
+        "businessLicenseUrl": "www.baidu.com",
+        "phone": "1234567890",
+        "address": "西安市市碑林区"
+    }
+
+2. 投放优惠券
+    POST: 127.0.0.1:8081/merchants/passtemplate
+    header: token/llxs-passbook-merchants
+    {
+        "merchantId": 4,
+        "goodsId":1001,
+        "discount":95,
+        "background": 1,
+        "desc": "新水果九五折优惠",
+        "end": "2020-08-30",
+        "hasToken": false,
+        "limit": 1000,
+        "start": "2020-05-01",
+        "summary": "领到就是赚到",
+        "title": "水果优惠券"
+    }
+    {
+        "merchantId": 4,
+        "goodsId":1002,
+        "discount":85,
+        "background": 1,
+        "desc": "新蔬菜八五折优惠",
+        "end": "2020-09-30",
+        "hasToken": true,
+        "limit": 1000,
+        "start": "2020-05-01",
+        "summary": "领到就是赚到",
+        "title": "蔬菜优惠券"
+    }
+
+3.查看商户投放的优惠券
+   GET:127.0.0.1:8081/merchants/passtemplate/4
+
+4.更新投放的优惠券（有id）
+    PUT: 127.0.0.1:8081/merchants/passtemplate
+    header: token/llxs-passbook-merchants
+    {
+         "id": 7,
+         "summary": "领到就是赚到",
+         "merchantId": 4,
+         "goodsId": 1001,
+         "background": 1,
+         "limit": 666,
+         "hasToken": false,
+         "start": "2020-05-01",
+          "discount": 95,
+          "end": "2020-08-30",
+          "title": "水果优惠券",
+          "desc": "新水果九五折优惠"
+     }
+
+5.上传 token 文件
+    POST: 127.0.0.1:8081/token/upload
+    header: token/llxs-passbook-merchants
+

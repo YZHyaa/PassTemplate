@@ -1,0 +1,51 @@
+需要启动的服务:
+     mysql, kafka, redis
+需要清空的数据:
+    1. mysql 的三张表（delete）
+    2. /tmp/token/ 下面的优惠券 token 数据 （rm）
+    3. redis 中的数据（flushall）
+
+1.获取库存信息（通过jwt获取userId）
+    GET: 127.0.0.1:8080/passbook/inventoryinfo
+
+2.获取优惠券
+    PUT: 127.0.0.1:8080/passbook/gainpasstemplate/{templateId}
+
+3.获取用户未使用的优惠券
+    GET: 127.0.0.1:8080/passbook/userpassinfo
+
+4.获取用户对应商品的优惠券
+     GET: 127.0.0.1:8080/passbook/goodspassinfo/{goodsId}
+
+5.使用优惠券
+    POST: 127.0.0.1:8080/passbook/usepasstemplate/
+    {
+        "passRequest":";::;0ACB:B:B:" // 1001&79808080 移位加密后
+    }
+
+6.获取用户已使用的优惠券
+    GET: 127.0.0.1:8080/passbook/useruserdpassinfo
+
+7.获取商户投放的优惠券（通过jwt获取merchantsId)
+    GET: 127.0.0.1:8080/passbook/passtemplateList
+
+8.创建反馈信息
+    POST: 127.0.0.1:8080/passbook/feedback
+    {
+        "userId": 15,
+        "type": "app",
+        "templateId": -1,
+        "comment": "诶呦，这卡包不错哦"
+    }
+    {
+        "userId": 15,
+        "type": "pass",
+        "templateId": "25",
+        "comment": "奸商，这烂怂有什么用？真有你的"
+    }
+
+9.查看全部反馈信息
+    GET: 127.0.0.1:8080/passbook/feedback
+
+10.查看指定用户反馈信息
+    GET: 127.0.0.1:8080/passbook/feedback/{userId}

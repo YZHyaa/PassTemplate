@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: Passbook
+  datasource:
+    url: jdbc:mysql://43.107.136.120:3306/passbook?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf-8
+    username: root
+    password: 123456
+  redis:
+    host: 43.107.136.120
+    port: 6379
+  kafka:
+    bootstrap-servers: 43.107.136.120:9092
+    consumer:
+      group-id: passbook
+    listener:
+      concurrency: 4
+
+logging:
+  level:
+    root: info
+  file:
+    name: llxs-passbook.log
+
+llxs:
+  origin:
+    - http://localhost:8080
+    - http://passbook.llxs.com
+    - http://www.passbook.llxs.com
+  jwt:
+    secret: llxs@Login(Auth}*^31)&heiMa% # 登录校验的密钥
+    pubKeyPath: C:\temp\rsa\xusm\rsa.pub # 公钥地址
+    priKeyPath: C:\temp\rsa\xusm\rsa.pri # 私钥地址
+    cookieName: XUSM_TOKEN #cookie名
+  merchant:
+    url: http://localhost:8081/merchants
+  yiwei:
+    encrpt: 10 # 返回结果移位加密秘钥
+    decrpt: 20 # 请求参数移位解密秘钥

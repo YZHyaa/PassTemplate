@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: llxsMerchants
+  datasource:
+    url: jdbc:mysql://43.107.136.120:3306/merchants?autoReconnect=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+  redis:
+    host: 43.107.136.120
+    port: 6379
+    database: 1
+  kafka:
+    bootstrap-servers: 43.107.136.120:9092
+    consumer:
+      group-id: passbook
+    listener:
+      concurrency: 4
+
+logging:
+  level:
+    root: info
+  file:
+    name: llxs-merchants.log
+
+passbook:
+  url: http://localhost:8080/passbook/passtemplateList
